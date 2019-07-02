@@ -22,11 +22,15 @@ public class Title {
     private String author;
     private int publicationYear;
     @OneToMany(
-            targetEntity = Book.class,
             cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER,
             mappedBy = "titleId"
     )
     private List<Book> books;
 
+    public Title(String bookTitle, String author, int publicationYear, List<Book> books) {
+        this.bookTitle = bookTitle;
+        this.author = author;
+        this.publicationYear = publicationYear;
+        this.books = books;
+    }
 }

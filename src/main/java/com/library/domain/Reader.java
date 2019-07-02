@@ -23,11 +23,15 @@ public class Reader {
     private String lastname;
     private LocalDate singUpDate;
     @OneToMany(
-            targetEntity = Rentals.class,
             cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER,
             mappedBy = "readerId"
     )
     private List<Rentals> rentalBook;
 
+    public Reader(String firstname, String lastname, LocalDate singUpDate, List<Rentals> rentalBook) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.singUpDate = singUpDate;
+        this.rentalBook = rentalBook;
+    }
 }

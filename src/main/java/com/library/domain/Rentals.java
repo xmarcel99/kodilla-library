@@ -3,7 +3,6 @@ package com.library.domain;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -20,15 +19,18 @@ public class Rentals {
     @Column(name = "rental_id",unique = true)
     private int rentalId;
     @OneToOne
-    @Setter
     @JoinColumn
     private Book bookId;
     @ManyToOne
     @JoinColumn
-    @Setter
     private Reader readerId;
     private LocalDate rentDate;
     private LocalDate giveBackDate;
 
-
+    public Rentals(Book bookId, Reader readerId, LocalDate rentDate, LocalDate giveBackDate) {
+        this.bookId = bookId;
+        this.readerId = readerId;
+        this.rentDate = rentDate;
+        this.giveBackDate = giveBackDate;
+    }
 }

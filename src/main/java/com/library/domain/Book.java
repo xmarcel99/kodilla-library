@@ -23,4 +23,9 @@ public class Book {
     @JoinColumn(name = "book_title_id")
     private Title titleId;
     private String status;
+
+    public Book(Title titleId, String status) {
+        this.titleId = titleId;
+        this.status = status;
+    }
 }
