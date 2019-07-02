@@ -11,7 +11,11 @@ import com.library.repository.TitleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import javax.transaction.Transactional;
+import java.util.Optional;
+
 @Repository
+@Transactional
 public class DbService {
     @Autowired
     BookRepository bookRepository;
@@ -36,6 +40,12 @@ public class DbService {
     }
     public void deleteRentals(int rentalId) {
         rentalsRepository.deleteById(rentalId);
+    }
+    public Optional<Book> findBookById(int bookId) {
+        return bookRepository.findById(bookId);
+    }
+    public int getBookCountById(int id) {
+       return  bookRepository.getBookCountByTitle(id);
     }
 
 
