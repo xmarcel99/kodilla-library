@@ -8,6 +8,7 @@ import com.library.repository.BookRepository;
 import com.library.repository.ReaderRepository;
 import com.library.repository.RentalsRepository;
 import com.library.repository.TitleRepository;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -25,6 +26,7 @@ public class DbService {
     RentalsRepository rentalsRepository;
     @Autowired
     TitleRepository titleRepository;
+
 
     public void addReader(Reader reader) {
         readerRepository.save(reader);
