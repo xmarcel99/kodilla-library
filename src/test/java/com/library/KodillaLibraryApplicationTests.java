@@ -28,7 +28,7 @@ public class KodillaLibraryApplicationTests {
     }
 
     @Test
-    public void testAddReader() {
+    public void testCreateContent() {
         //Given
         Reader freddy = new Reader("Freddy", "Mercury", LocalDate.of(1410, 4, 5), new ArrayList<>());
         Title title1 = new Title("Pszczolka maja", "Adam Mickiewicz", 2011, new ArrayList<>());

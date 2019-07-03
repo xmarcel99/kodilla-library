@@ -47,6 +47,20 @@ public class DbService {
     public int getBookCountById(int id) {
        return  bookRepository.getBookCountByTitle(id);
     }
-
+    public void deleteRental(int id) {
+        rentalsRepository.deleteById(id);
+    }
+    public Optional<Title> findTitleByid(int id) {
+       return  titleRepository.findById(id);
+    }
+    public Optional<Reader> findReaderById(int id) {
+        return readerRepository.findById(id);
+    }
+    public void deleteReaderById(int id) {
+        readerRepository.deleteById(id);
+    }
+    public void deleteBookById(int id) {
+        bookRepository.deleteById(id);
+    }
 
 }
