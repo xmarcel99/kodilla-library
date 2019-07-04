@@ -13,14 +13,17 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 public class Title {
+
     @Id
     @GeneratedValue
-    @NotNull
-    @Column(name = "title_id",unique = true)
     private int titleId;
+
     private String bookTitle;
+
     private String author;
+
     private int publicationYear;
+
     @OneToMany(
             cascade = CascadeType.ALL,
             mappedBy = "titleId"

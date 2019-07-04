@@ -4,35 +4,49 @@ import com.library.dbservice.DbService;
 import com.library.dbservice.NoBookException;
 import com.library.dbservice.NoReaderException;
 import com.library.domain.Book;
-import com.library.domain.Dto.*;
+import com.library.domain.dto.*;
 import com.library.domain.NoTitleException;
 import com.library.domain.Reader;
-import com.library.mapper.Mapper;
+import com.library.mapper.BookMapper;
+import com.library.mapper.ReaderMapper;
+import com.library.mapper.RentalsMapper;
+import com.library.mapper.TitleMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("v2/library")
 public class LibraryController {
+
     @Autowired
     DbService dbService;
+
     @Autowired
-    Mapper mapper;
+    BookMapper bookMapper;
+
+    @Autowired
+    ReaderMapper readerMapper;
+
+    @Autowired
+    RentalsMapper rentalsMapper;
+
+    @Autowired
+    TitleMapper titleMapper;
 
     @RequestMapping(method = RequestMethod.POST, value = "addReader")
     public void addReader(@RequestBody ReaderDto readerDto) {
-        dbService.addReader(mapper.mapToReader(readerDto));
+        dbService.addReader(readerMapper.mapToReader(readerDto));
     }
 
     @RequestMapping(method = RequestMethod.POST,value = "addTitle")
     public void addTitle(@RequestBody TitleDto titleDto) {
-        dbService.addTitle(mapper.mapToTitle(titleDto));
+        dbService.addTitle(titleMapper.mapToTitle(titleDto));
     }
 
     @RequestMapping(method = RequestMethod.POST,value = "addBook")
-    public void addBook(@RequestBody BookJson bookJson) {
+    public void addBook(@RequestBody BookDTO bookDTO) {
         try {
-            Book book = mapper.mapToBookFromBookJson(bookJson);
+            Book book = bookMapper.mapToBookFromBookJson(bookDTO);
             dbService.addBook(book);
         } catch (NoTitleException e) {
             System.out.println(e.getMessage());
@@ -52,15 +66,13 @@ public class LibraryController {
     }
 
     @RequestMapping(method = RequestMethod.PUT,value = "addRental")
-    public void addRental(@RequestBody RentalsJson rentalsJson) {
+    public void addRental(@RequestBody RentalsDTO rentalsDTO) {
         try {
-            Reader reader = dbService.findReaderById(rentalsJson.getReaderId()).orElseThrow(NoReaderException::new);
-            reader.getRentalBook().add((mapper.mapToRentalsFromRentalsJson(rentalsJson)));
+            Reader reader = dbService.findReaderById(rentalsDTO.getReaderId()).orElseThrow(NoReaderException::new);
+            reader.getRentalBook().add((rentalsMapper.mapToRentalsFromRentalsJson(rentalsDTO)));
             dbService.addReader(reader);
-            dbService.addRentals(mapper.mapToRentalsFromRentalsJson(rentalsJson));
-        } catch (NoBookException e) {
-            System.out.println(e.getMessage());
-        } catch (NoReaderException e) {
+            dbService.addRentals(rentalsMapper.mapToRentalsFromRentalsJson(rentalsDTO));
+        } catch (NoBookException | NoReaderException e) {
             System.out.println(e.getMessage());
         }
     }

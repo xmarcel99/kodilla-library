@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -14,14 +13,17 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 public class Reader {
+
     @Id
     @GeneratedValue
-    @NotNull
-    @Column(name = "reader_id",unique = true)
     private int readerId;
+
     private String firstname;
+
     private String lastname;
+
     private LocalDate singUpDate;
+
     @OneToMany(
             cascade = CascadeType.ALL,
             mappedBy = "readerId"

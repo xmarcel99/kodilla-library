@@ -1,20 +1,24 @@
-package com.library.domain;
+package create.initial;
+
 
 import com.library.dbservice.DbService;
-import com.library.repository.*;
-import org.slf4j.LoggerFactory;
+import com.library.domain.Book;
+import com.library.domain.Reader;
+import com.library.domain.Rentals;
+import com.library.domain.Title;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.logging.Logger;
 
 @Component
-public class Content {
+public class InitialSetup {
+
     @Autowired
     DbService dbService;
+
     @PostConstruct
     public void init() {
         Reader freddy = new Reader("Freddy", "Mercury", LocalDate.of(1410, 4, 5), new ArrayList<>());

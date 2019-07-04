@@ -1,12 +1,16 @@
-package com.library.domain.Dto;
+package com.library.domain.dto;
 
+import com.library.domain.Title;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public class BookJson {
+public class BookDto {
+
     private int bookId;
-    private int titleId;
+
+    private Title titleId;
+
     private String status;
 }

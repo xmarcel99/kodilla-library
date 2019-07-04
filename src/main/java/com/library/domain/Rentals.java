@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Entity
@@ -13,18 +12,21 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Getter
 public class Rentals {
+
     @Id
     @GeneratedValue
-    @NotNull
-    @Column(name = "rental_id",unique = true)
     private int rentalId;
+
     @OneToOne
     @JoinColumn
     private Book bookId;
+
     @ManyToOne
     @JoinColumn
     private Reader readerId;
+
     private LocalDate rentDate;
+
     private LocalDate giveBackDate;
 
     public Rentals(Book bookId, Reader readerId, LocalDate rentDate, LocalDate giveBackDate) {

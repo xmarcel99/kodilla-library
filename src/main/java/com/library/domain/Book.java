@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+
 @NamedNativeQuery(
         name = "Book.getBookCountByTitle",
         query = "select count(*) from book where book_title_id = :titleId"
@@ -16,14 +16,15 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @Getter
 public class Book {
+
     @Id
     @GeneratedValue
-    @NotNull
-    @Column(name = "book_id",unique = true)
     private int bookId;
+
     @ManyToOne
     @JoinColumn(name = "book_title_id")
     private Title titleId;
+
     @Setter
     private String status;
 

@@ -18,12 +18,16 @@ import java.util.Optional;
 @Repository
 @Transactional
 public class DbService {
+
     @Autowired
     BookRepository bookRepository;
+
     @Autowired
     ReaderRepository readerRepository;
+
     @Autowired
     RentalsRepository rentalsRepository;
+
     @Autowired
     TitleRepository titleRepository;
 
@@ -31,36 +35,47 @@ public class DbService {
     public void addReader(Reader reader) {
         readerRepository.save(reader);
     }
+
     public void addTitle(Title title) {
         titleRepository.save(title);
     }
+
     public void addBook(Book book) {
         bookRepository.save(book);
     }
+
     public void addRentals(Rentals rentals) {
         rentalsRepository.save(rentals);
     }
+
     public void deleteRentals(int rentalId) {
         rentalsRepository.deleteById(rentalId);
     }
+
     public Optional<Book> findBookById(int bookId) {
         return bookRepository.findById(bookId);
     }
+
     public int getBookCountById(int id) {
        return  bookRepository.getBookCountByTitle(id);
     }
+
     public void deleteRental(int id) {
         rentalsRepository.deleteById(id);
     }
+
     public Optional<Title> findTitleByid(int id) {
        return  titleRepository.findById(id);
     }
+
     public Optional<Reader> findReaderById(int id) {
         return readerRepository.findById(id);
     }
+
     public void deleteReaderById(int id) {
         readerRepository.deleteById(id);
     }
+
     public void deleteBookById(int id) {
         bookRepository.deleteById(id);
     }
