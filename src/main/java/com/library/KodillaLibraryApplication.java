@@ -11,5 +11,4 @@ public class KodillaLibraryApplication {
         SpringApplication.run(KodillaLibraryApplication.class, args);
 
     }
-
 }

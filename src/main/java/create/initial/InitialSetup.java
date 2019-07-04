@@ -6,7 +6,10 @@ import com.library.domain.Book;
 import com.library.domain.Reader;
 import com.library.domain.Rentals;
 import com.library.domain.Title;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -18,9 +21,10 @@ public class InitialSetup {
 
     @Autowired
     DbService dbService;
-
+    
     @PostConstruct
     public void init() {
+
         Reader freddy = new Reader("Freddy", "Mercury", LocalDate.of(1410, 4, 5), new ArrayList<>());
         Title title1 = new Title("Pszczolka maja", "Adam Mickiewicz", 2011, new ArrayList<>());
         Title title = new Title("Czterej pancerni", "Jan Brzechwka", 1999, new ArrayList<>());
