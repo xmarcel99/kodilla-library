@@ -6,10 +6,7 @@ import com.library.domain.Book;
 import com.library.domain.Reader;
 import com.library.domain.Rentals;
 import com.library.domain.Title;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -21,7 +18,7 @@ public class InitialSetup {
 
     @Autowired
     DbService dbService;
-    
+
     @PostConstruct
     public void init() {
 
